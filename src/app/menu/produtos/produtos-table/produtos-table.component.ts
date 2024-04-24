@@ -110,8 +110,7 @@ export class ProdutosTableComponent implements OnInit {
         this.getProdutos();
       },
       error: (err) => {
-        console.log(err);
-        this.toastr.error(`Erro ao excluir item: ${err}`);
+        this.toastr.error(`Erro ao excluir item!`);
       },
     });
   }

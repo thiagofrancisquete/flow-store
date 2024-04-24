@@ -48,12 +48,15 @@ export class FabricantesTableComponent implements OnInit {
     this.getFabricantes();
   }
 
+  /**
+   * Obtém fabricantes do servidor e atualiza a fonte de dados da tabela.
+   */
   getFabricantes() {
     this.fabricantesService
       .getPessoa(this.pageSize, this.pageNumber)
       .subscribe({
         next: (res) => {
-          console.log('Fabricantes: ', res);
+          //console.log('Fabricantes: ', res);
           this.dataSource = new MatTableDataSource(res.content);
           this.pageSize = res.pageable.pageSize;
           this.pageNumber = res.pageable.pageNumber;
@@ -61,14 +64,14 @@ export class FabricantesTableComponent implements OnInit {
           this.totalPages = res.totalPages;
         },
         error: (err) => {
-          console.log('Erro ao buscar dados do servidor', err);
+          //console.log('Erro ao buscar dados do servidor', err);
           this.toastr.error(`Erro ao buscar fabricantes do servidor!`);
         },
       });
   }
 
   paginar(event: any) {
-    console.log(event);
+    //console.log(event);
     this.pageSize = event.pageSize;
     this.pageNumber = event.pageIndex;
     this.getFabricantes(); // Chama novamente o método para buscar os dados com base na nova página selecionada
@@ -83,12 +86,12 @@ export class FabricantesTableComponent implements OnInit {
     let id = row.id;
     this.fabricantesService.deletePessoa(id).subscribe({
       next: (res) => {
-        console.log('deletado com sucesso', res);
+       // console.log('deletado com sucesso', res);
         this.toastr.success('Fabricante excluído com sucesso!');
         this.getFabricantes()
       },
       error: (err) => {
-        console.log('Erro ao excluir', err);
+        //console.log('Erro ao excluir', err);
         this.toastr.error(`Erro ao excluir item!`);
       },
     });
@@ -99,6 +102,10 @@ export class FabricantesTableComponent implements OnInit {
     this.router.navigate([`fabricantes/editar-fabricante/${row.id}`]);
   }
 
+  /**
+   * Busca fabricantes por CNPJ e atualiza a fonte de dados da tabela.
+   * Se o CNPJ estiver vazio, recarrega a lista completa de fabricantes.
+   */
   searchCnpj() {
     console.log(this.cnpjInput);
 
@@ -122,7 +129,7 @@ export class FabricantesTableComponent implements OnInit {
         }
       },
       error: (err) => {
-        console.log(err);
+        //console.log(err);
         this.toastr.error(`Erro ao buscar fabricantes do servidor!`);
       },
     });

@@ -30,6 +30,7 @@ export class FabricantesFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Obtém o nome da rota atual e verifica se é uma edição ou cadastro
     const routeName =
       this.route.snapshot.url[this.route.snapshot.url.length - 1].path;
 
@@ -39,13 +40,20 @@ export class FabricantesFormComponent implements OnInit {
       this.sharedPessoaService.getPessoa().subscribe(pessoa => {
         this.pessoa = pessoa;
       });
+      // Constrói o formulário após recuperar o objeto Pessoa
       this.buildForm();
     } else {
       this.isEditing = false;
+      // Constrói o formulário de cadastro
       this.buildForm();
     }
   }
 
+  /**
+   * Constrói o formulário de fabricantes.
+   * Define os campos do formulário com os valores da pessoa(fabricante), se existirem.
+   * Aplica validadores aos campos necessários.
+   */
   buildForm() {
     this.fabricantesForm = this.fb.group({
       nome: [this.pessoa ? this.pessoa.nome : null, [Validators.required]],
@@ -69,7 +77,6 @@ export class FabricantesFormComponent implements OnInit {
       console.log(cep);
       this.buscaCepService.getCep(cep).subscribe({
         next: (res: any) => {
-          console.log('cep: ', res);
           if (!res.erro) {
             this.fabricantesForm.patchValue({
               logradouro: res.logradouro,
@@ -79,7 +86,6 @@ export class FabricantesFormComponent implements OnInit {
               complemento: res.complemento,
             });
           } else {
-            console.log('cep invalido, insira os dados manualmente');
             this.fabricantesForm.patchValue({
               logradouro: null,
               bairro: null,
@@ -89,28 +95,25 @@ export class FabricantesFormComponent implements OnInit {
             });
           }
         },
-        error: (err) => {},
+        error: (err) => {
+          this.toastr.error(`Não foi possível fazer a busca automática do endereço! Por favor, preencha os dados manualmente.`)
+        },
       });
     }
   }
 
   save() {
-    console.log(this.fabricantesForm.valid);
-    console.log(this.fabricantesForm.value);
-
     if(this.isEditing) {
       this.update()
     } else {
       let obj = this.fabricantesForm.value
       this.fabricantesService.createPessoa(obj).subscribe({
         next: res => {
-          console.log('criado com sucesso', res)
           this.toastr.success('Fabricante criado com sucesso!');
           this.goBack()
         },
         error: err => {
-          console.log('Erro ao criar', err)
-          this.toastr.error(`Erro ao criar fabricante: ${err.error}`)
+          this.toastr.error(`Erro ao criar fabricante!`)
         }
       })
     }
@@ -125,8 +128,7 @@ export class FabricantesFormComponent implements OnInit {
         this.goBack()
       },
       error: err => {
-        console.log(err)
-        this.toastr.error(`Erro ao editar fabricante: ${err.message}`)
+        this.toastr.error(`Erro ao editar fabricante!`)
       }
     })
   }

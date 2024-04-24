@@ -62,12 +62,10 @@ export class ProdutosFormComponent implements OnInit {
       let obj = this.produtosForm.value
       this.produtosService.createProduto(obj).subscribe({
         next: res => {
-          console.log(res)
           this.toastr.success('Produto criado com sucesso')
           this.goBack()
         },
         error: err => {
-          console.log('Erro ao criar', err)
           this.toastr.error(`Erro ao criar produto`)
         }
       })
@@ -82,8 +80,7 @@ export class ProdutosFormComponent implements OnInit {
         this.goBack()
       },
       error: err => {
-        console.log(err)
-        this.toastr.error(`Erro ao editar produto! ${err}`)
+        this.toastr.error(`Erro ao editar produto!`)
       }
     })
   }
@@ -95,7 +92,6 @@ export class ProdutosFormComponent implements OnInit {
   getFabricantes() {
     this.fabricantesService.getPessoa(50, 0).subscribe({
       next: res => {
-        console.log(res.content)
         this.fabricantesList = res.content
       }
     })

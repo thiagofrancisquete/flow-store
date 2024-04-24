@@ -26,7 +26,6 @@ export class FabricantesDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.editData);
     if (this.editData) {
       this.nome = this.editData.nome;
       this.cnpj = this.editData.cnpj;
@@ -41,7 +40,7 @@ export class FabricantesDialogComponent implements OnInit {
       this.contatoTipo = this.editData.contatoTipo;
     }
   }
-  
+
   goBack() {
     this.dialogRef.close();
   }
