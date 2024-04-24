@@ -56,7 +56,6 @@ export class FabricantesTableComponent implements OnInit {
       .getPessoa(this.pageSize, this.pageNumber)
       .subscribe({
         next: (res) => {
-          //console.log('Fabricantes: ', res);
           this.dataSource = new MatTableDataSource(res.content);
           this.pageSize = res.pageable.pageSize;
           this.pageNumber = res.pageable.pageNumber;
@@ -64,14 +63,12 @@ export class FabricantesTableComponent implements OnInit {
           this.totalPages = res.totalPages;
         },
         error: (err) => {
-          //console.log('Erro ao buscar dados do servidor', err);
           this.toastr.error(`Erro ao buscar fabricantes do servidor!`);
         },
       });
   }
 
   paginar(event: any) {
-    //console.log(event);
     this.pageSize = event.pageSize;
     this.pageNumber = event.pageIndex;
     this.getFabricantes(); // Chama novamente o método para buscar os dados com base na nova página selecionada
@@ -86,12 +83,10 @@ export class FabricantesTableComponent implements OnInit {
     let id = row.id;
     this.fabricantesService.deletePessoa(id).subscribe({
       next: (res) => {
-       // console.log('deletado com sucesso', res);
         this.toastr.success('Fabricante excluído com sucesso!');
         this.getFabricantes()
       },
       error: (err) => {
-        //console.log('Erro ao excluir', err);
         this.toastr.error(`Erro ao excluir item!`);
       },
     });
@@ -107,8 +102,6 @@ export class FabricantesTableComponent implements OnInit {
    * Se o CNPJ estiver vazio, recarrega a lista completa de fabricantes.
    */
   searchCnpj() {
-    console.log(this.cnpjInput);
-
     if (!this.cnpjInput || this.cnpjInput.trim() === '') {
       this.getFabricantes();
       return; // Retorna para evitar a execução do código restante
@@ -116,7 +109,6 @@ export class FabricantesTableComponent implements OnInit {
 
     this.fabricantesService.getPessoaByCnpj(this.cnpjInput, 0, 5).subscribe({
       next: (res) => {
-        console.log(res);
         if(res.content.length === 0) {
           this.toastr.warning(`O cnpj ${this.cnpjInput} não foi encontrado!`);
           this.getFabricantes()
@@ -129,7 +121,6 @@ export class FabricantesTableComponent implements OnInit {
         }
       },
       error: (err) => {
-        //console.log(err);
         this.toastr.error(`Erro ao buscar fabricantes do servidor!`);
       },
     });

@@ -60,7 +60,6 @@ export class ProdutosTableComponent implements OnInit {
   getProdutos() {
     this.produtosService.getProdutos(this.pageSize, this.pageNumber).subscribe({
       next: (res) => {
-        console.log(res);
         this.dataSource = new MatTableDataSource(res.content);
         this.pageSize = res.pageable.pageSize;
         this.pageNumber = res.pageable.pageNumber;
@@ -68,20 +67,18 @@ export class ProdutosTableComponent implements OnInit {
         this.totalPages = res.totalPages;
       },
       error: (err) => {
-        console.log(err);
+        this.toastr.error(`Erro ao tentar buscar dados do servidor!`);
       },
     });
   }
 
   paginar(event: any) {
-    console.log(event);
     this.pageSize = event.pageSize;
     this.pageNumber = event.pageIndex;
     this.getProdutos(); // Chama novamente o método para buscar os dados com base na nova página selecionada
   }
 
   create() {
-    console.log('clicou');
     this.router.navigate(['produtos/cadastrar-produto']);
   }
 
@@ -116,9 +113,6 @@ export class ProdutosTableComponent implements OnInit {
   }
 
   searchCodBarras() {
-    console.log(this.codigoDeBarrasInput);
-    console.log(typeof this.codigoDeBarrasInput);
-
     if (!this.codigoDeBarrasInput || this.codigoDeBarrasInput.trim() === '') {
       this.getProdutos();
       return;

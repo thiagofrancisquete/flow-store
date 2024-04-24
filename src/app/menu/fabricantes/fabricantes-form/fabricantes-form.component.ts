@@ -8,7 +8,6 @@ import { Pessoa } from 'src/app/models/pessoa-model';
 import { BuscaCepService } from 'src/app/shared/services/busca-cep.service';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-fabricantes-form',
   templateUrl: './fabricantes-form.component.html',
@@ -74,7 +73,6 @@ export class FabricantesFormComponent implements OnInit {
     let cep = this.fabricantesForm.get('cep')?.value;
 
     if (cep !== null) {
-      console.log(cep);
       this.buscaCepService.getCep(cep).subscribe({
         next: (res: any) => {
           if (!res.erro) {

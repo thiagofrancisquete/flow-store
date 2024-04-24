@@ -17,9 +17,7 @@ export class ProdutosDialogComponent implements OnInit{
     private dialogRef: MatDialogRef<ProdutosDialogComponent>
   ) {}
 
-
   ngOnInit(): void {
-    console.log(this.editData)
     if(this.editData) {
       this.nome = this.editData.nome;
       this.descricao = this.editData.descricao;
