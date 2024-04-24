@@ -1,0 +1,74 @@
+  <div class="row">
+   <div class="actions">
+    <div class="search">
+      <input matInput [(ngModel)]="cnpjInput" placeholder="Buscar CNPJ"  maxlength="16">
+      <button (click)="searchCnpj()">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+    <div class="new">
+      <app-botao [tipo]="'verde'" [texto]="'Cadastrar'" (click)="create()"></app-botao>
+    </div>
+   </div>
+
+    <div class="mat-elevation-z5 t-table-container">
+      <div class="t-table-scroll">
+
+        <table mat-table [dataSource]="dataSource" matSort class="t-table">
+
+          <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortDataByNome()">Fabricante</th>
+            <td mat-cell *matCellDef="let row" class="t-td"> {{row.nome}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="cnpj">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortDataByCnpj()">CNPJ</th>
+            <td mat-cell *matCellDef="let row" class="t-td"> {{row.cnpj}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="endereco">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortDataByEndereco()">Endereço</th>
+            <!-- <td mat-cell *matCellDef="let row" class="t-td"> {{row.logradouro + ', ' + row.numero + ' ' + row.complemento
+              + ', ' + row.bairro + ', ' + row.cidade + ', ' + row.estado}} </td> -->
+              <td mat-cell *matCellDef="let row" class="t-td"> {{ row.logradouro ? row.logradouro + ', ' : '' }}
+                {{ row.numero ? row.numero + ' ' : '' }}
+                {{ row.complemento ? row.complemento + ', ' : '' }}
+                {{ row.bairro ? row.bairro + ', ' : '' }}
+                {{ row.cidade ? row.cidade + ', ' : '' }}
+                {{ row.estado ? row.estado : '' }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ações</th>
+            <td mat-cell *matCellDef="let row" class="t-td">
+              <div class="t-acoes">
+                <button class="t-acoes-btn" (click)="seeInfo(row)" matTooltip="Detalhes">
+                  <i class="fa-solid fa-circle-info"></i>
+                </button>
+                <button class="t-acoes-btn" (click)="edit(row)" matTooltip="Editar">
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <button class="t-acoes-btn" matTooltip="Excluir" (click)="delete(row)">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+      </div>
+
+      <mat-paginator
+        [length]="totalElements"
+        [pageSize]="pageSize"
+        [pageIndex]="pageNumber"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="paginar($event)">
+      </mat-paginator>
+    </div>
+  </div>

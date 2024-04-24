@@ -1,0 +1,41 @@
+// overrides
+.mdc-list-item__primary-text {
+  color: inherit !important;
+}
+
+.mat-drawer-inner-container {
+overflow: hidden !important;
+}
+
+// fonts
+.u-f15 {
+    font-size: 15px;
+}
+
+// spacing
+.u-p-page {
+  padding: 10px 120px 10px 40px;
+}
+
+// commom styles
+.u-page-info {
+  display: flex;
+  color: #23272E;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  .u-symbols {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .u-p-page {
+    padding: 10px;
+  }
+}

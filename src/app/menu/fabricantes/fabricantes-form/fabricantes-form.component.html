@@ -1,0 +1,91 @@
+<div class="page-content u-p-page">
+  <div class="u-page-info">
+    <h1>Fabricantes</h1>
+    <div class="u-symbols">
+      <i class="fa-solid fa-bell"></i>
+      <i class="fa-regular fa-circle-user"></i>
+    </div>
+  </div>
+
+  <div class="content">
+    <form [formGroup]="fabricantesForm" class="form">
+      <mat-form-field>
+        <mat-label>CNPJ</mat-label>
+        <input matInput formControlName="cnpj" placeholder="CNPJ" minlength="14" maxlength="14"/>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome" placeholder="Nome" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>CEP</mat-label>
+        <input matInput formControlName="cep" placeholder="CEP" minlength="8" maxlength="8" (blur)="buscaCep()" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Endereço</mat-label>
+        <input matInput formControlName="logradouro" placeholder="Logradouro" />
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Número</mat-label>
+          <input matInput formControlName="numero" placeholder="Número" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Complemento</mat-label>
+          <input
+            matInput
+            formControlName="complemento"
+            placeholder="Complemento"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Bairro</mat-label>
+          <input matInput formControlName="bairro" placeholder="Bairro" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Cidade</mat-label>
+          <input matInput formControlName="cidade" placeholder="Cidade" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Estado</mat-label>
+        <input matInput formControlName="estado" placeholder="Estado" />
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Tipo de Contato</mat-label>
+          <mat-select formControlName="contatoTipo">
+            <mat-option [value]="'Telefone'">Telefone</mat-option>
+            <mat-option [value]="'Celular'">Celular</mat-option>
+            <mat-option [value]="'Email'">Email</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Contato</mat-label>
+          <input matInput formControlName="contato" placeholder="Contato" />
+        </mat-form-field>
+      </div>
+      <!-- <pre>{{ fabricantesForm.valid | json }}</pre>
+      <pre>{{ fabricantesForm.value | json }}</pre> -->
+    </form>
+
+    <div class="row">
+      <app-botao [tipo]="'branco'" [texto]="'Cancelar'" (click)="goBack()"></app-botao>
+      <app-botao [tipo]="'verde'" [texto]="'Salvar'" (click)="save()" [disabled]="!fabricantesForm.valid"></app-botao>
+    </div>
+
+  </div>
+
+</div>

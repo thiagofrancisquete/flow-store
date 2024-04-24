@@ -1,0 +1,26 @@
+<div class="content">
+  <h3>Visualizando produto {{ nome }}</h3>
+  <form  class="form">
+    <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input matInput [(ngModel)]="nome" name="nome" placeholder="Nome" readonly/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Descrição</mat-label>
+      <textarea matInput [(ngModel)]="descricao" name="descricao" placeholder="Descrição" rows="5" readonly="">
+
+      </textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Código de Barras</mat-label>
+      <input matInput [(ngModel)]="codigoBarras" name="codigoBarras" placeholder="Código de Barras" readonly/>
+    </mat-form-field>
+
+  </form>
+
+  <div class="row">
+    <app-botao [tipo]="'branco'" [texto]="'Fechar'" (click)="goBack()"></app-botao>
+  </div>
+</div>

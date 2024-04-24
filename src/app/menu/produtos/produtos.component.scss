@@ -1,0 +1,22 @@
+.page-info {
+  display: flex;
+  color: #23272E;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  // background-color: green;
+
+  .symbols {
+    // background-color: red;
+     padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.fa-solid, .fa-regular {
+  font-size: 22px;
+  margin-left: 15px;
+  color: #8B909A;
+}

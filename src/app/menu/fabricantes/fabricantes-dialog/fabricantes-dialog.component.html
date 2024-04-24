@@ -1,0 +1,76 @@
+
+<div class="content">
+  <h3>Visualizando fabricante {{ nome }}</h3>
+    <form class="form">
+      <mat-form-field>
+        <mat-label>CNPJ</mat-label>
+        <input matInput name="cnpj" [(ngModel)]="cnpj" placeholder="CNPJ" minlength="14" maxlength="14" readonly />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput name="nome" [(ngModel)]="nome" placeholder="Nome" readonly />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>CEP</mat-label>
+        <input matInput name="cep" [(ngModel)]="cep" placeholder="CEP" minlength="8" maxlength="8"  readonly />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Endereço</mat-label>
+        <input matInput name="logradouro" [(ngModel)]="logradouro" placeholder="Logradouro" readonly />
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Número</mat-label>
+          <input matInput name="numero" [(ngModel)]="numero" placeholder="Número" readonly />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Complemento</mat-label>
+          <input
+            matInput
+            name="complemento" [(ngModel)]="complemento"
+            placeholder="Complemento"
+            readonly
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Bairro</mat-label>
+          <input matInput name="bairro" [(ngModel)]="bairro" placeholder="Bairro" readonly />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Cidade</mat-label>
+          <input matInput name="cidade" [(ngModel)]="cidade" placeholder="Cidade" readonly />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Estado</mat-label>
+        <input matInput name="estado" [(ngModel)]="estado" placeholder="Estado" readonly />
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Tipo de Contato</mat-label>
+          <input matInput name="contatoTipo" [(ngModel)]="contatoTipo" placeholder="Contato" readonly />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Contato</mat-label>
+          <input matInput name="contato" [(ngModel)]="contato" placeholder="Contato" readonly />
+        </mat-form-field>
+      </div>
+
+    </form>
+
+  <div class="row">
+    <app-botao [tipo]="'branco'" [texto]="'Fechar'" (click)="goBack()"></app-botao>
+  </div>
+</div>

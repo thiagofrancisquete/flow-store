@@ -1,0 +1,72 @@
+.fa-solid, .fa-regular {
+  font-size: 22px;
+  margin-left: 15px;
+  color: #8B909A;
+}
+
+.content {
+  width: 80vw;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  overflow: auto;
+  background-color: white;
+}
+
+.form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  .form-input {
+    height: 10px !important;
+  }
+
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+
+    mat-form-field {
+      width: calc(50% - 12px);
+    }
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  padding: 10px;
+}
+
+
+@media (max-width: 768px) {
+  // .page-info {
+  //   width: 100%;
+  // }
+
+  .content {
+    margin: auto;
+  }
+
+  .form {
+    width: 100%;
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+
+      mat-form-field {
+        width: 100%;
+      }
+    }
+  }
+
+  .row {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

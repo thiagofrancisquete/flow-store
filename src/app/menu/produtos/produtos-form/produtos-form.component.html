@@ -1,0 +1,46 @@
+<div class="page-content u-p-page">
+
+  <div class="u-page-info">
+    <h1>Produtos</h1>
+    <div class="u-symbols">
+      <i class="fa-solid fa-bell"></i>
+      <i class="fa-regular fa-circle-user"></i>
+    </div>
+  </div>
+
+  <div class="content">
+    <form [formGroup]="produtosForm" class="form">
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome" placeholder="Nome" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Descrição</mat-label>
+        <textarea matInput formControlName="descricao" placeholder="Descrição" rows="5">
+
+        </textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Código de Barras</mat-label>
+        <input matInput formControlName="codigoBarras" placeholder="Código de Barras" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Fabricante</mat-label>
+        <mat-select formControlName="fabricanteID">
+          <mat-option *ngFor="let item of fabricantesList" [value]="item.id" >{{ item.nome }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- <pre>{{ produtosForm.value | json }}</pre> -->
+    </form>
+
+    <div class="row">
+      <app-botao [tipo]="'branco'" [texto]="'Cancelar'" (click)="goBack()"></app-botao>
+      <app-botao [tipo]="'verde'" [texto]="'Salvar'" (click)="save()" [disabled]="!produtosForm.valid"></app-botao>
+    </div>
+  </div>
+
+</div>

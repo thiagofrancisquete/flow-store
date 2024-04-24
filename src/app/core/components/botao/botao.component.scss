@@ -1,0 +1,35 @@
+button {
+ width: 275px;
+ height: 45px;
+ padding: 10px;
+ font-size: 15px;
+ cursor: pointer;
+}
+
+.btn-verde {
+  background-color: #18988b;
+  color: white;
+  border: 1px solid #18988b;
+}
+
+.btn-branco {
+  background-color: white;
+  color: #18988b;
+  border: 1px solid #18988b;
+}
+
+button.disabled {
+  cursor: not-allowed;
+  background-color: #c9c9c9;
+}
+
+
+@media (max-width: 768px) {
+  button {
+    width: 200px;
+
+    &:first-child {
+      margin-bottom: 10px;
+    }
+  }
+}

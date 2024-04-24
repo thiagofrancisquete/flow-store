@@ -1,0 +1,16 @@
+.content {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: auto !important;
+
+  h3 {
+    color: #23272E;
+    margin-bottom: 10px;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}

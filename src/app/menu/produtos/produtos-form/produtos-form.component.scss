@@ -1,0 +1,51 @@
+textarea {
+  resize: none;
+}
+
+.fa-solid, .fa-regular {
+  font-size: 22px;
+  margin-left: 15px;
+  color: #8B909A;
+}
+
+.content {
+  width: 80vw;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  overflow: auto;
+  background-color: white;
+}
+
+.form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  padding: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .content {
+    margin: auto;
+  }
+  
+  .form {
+    width: 100%;
+  }
+
+  .row {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

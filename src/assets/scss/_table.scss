@@ -1,0 +1,52 @@
+.t-table-container {
+  border: 1px solid #fff;
+  border-radius: 8px;
+
+  overflow-x: auto;
+  // max-width: 100%;
+}
+
+.t-table-scroll {
+  max-height: calc(100vh - 270px); // Subtrai 270 pixels da altura total da viewport
+  overflow-y: auto; // Habilita a rolagem vertical quando o conteúdo ultrapassa a altura máxima definida
+}
+
+
+.t-table th {
+  position: sticky; /* Faz com que os cabeçalhos das colunas fixem quando a tabela rolar */
+  top: 0; /* Fixa o cabeçalho na parte superior da tabela */
+  z-index: 2; /* Garante que o cabeçalho fique acima do conteúdo da tabela */
+  color: #8B909A;
+}
+
+.t-table td {
+  color: #23272E;
+}
+
+.t-acoes {
+  display: flex;
+  flex-direction: row;
+
+  .t-acoes-btn {
+    padding: 3px 5px;
+    border: none;
+    background-color: transparent;
+    margin: 2px;
+    cursor: pointer;
+  }
+}
+
+.fa-regular {
+  color: #8B909A;
+  font-size: 14px;
+
+  &:hover {
+    color: #23272E;
+  }
+}
+
+@media (max-width: 768px) {
+  .t-table-container {
+    width: 280px;
+  }
+}
