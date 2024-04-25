@@ -139,14 +139,29 @@ export class ProdutosTableComponent implements OnInit {
   }
 
   sortDataByDescricao() {
+    console.log(this.dataSource.data);
     if (this.ascendingDescricaoOrder) {
-      this.dataSource.data.sort((a, b) =>
-        a.descricao.localeCompare(b.descricao)
-      );
+      this.dataSource.data.sort((a, b) => {
+        if (a.descricao && b.descricao) {
+          return a.descricao.localeCompare(b.descricao);
+        } else {
+          // Tratar o caso em que uma das descrições é null
+          // Por exemplo, colocar os itens com descrição nula no final
+          if (!a.descricao) return 1;
+          if (!b.descricao) return -1;
+        }
+      });
     } else {
-      this.dataSource.data.sort((a, b) =>
-        b.descricao.localeCompare(a.descricao)
-      );
+      this.dataSource.data.sort((a, b) => {
+        if (a.descricao && b.descricao) {
+          return b.descricao.localeCompare(a.descricao);
+        } else {
+          // Tratar o caso em que uma das descrições é null
+          // Por exemplo, colocar os itens com descrição nula no final
+          if (!a.descricao) return -1;
+          if (!b.descricao) return 1;
+        }
+      });
     }
     this.ascendingDescricaoOrder = !this.ascendingDescricaoOrder;
 
@@ -156,11 +171,11 @@ export class ProdutosTableComponent implements OnInit {
   sortDataByFabricante() {
     if (this.ascendingFabricanteOrder) {
       this.dataSource.data.sort((a, b) =>
-        a.descricao.localeCompare(b.descricao)
+        a.fabricante.name.localeCompare(b.fabricante.name)
       );
     } else {
       this.dataSource.data.sort((a, b) =>
-        b.descricao.localeCompare(a.descricao)
+        b.fabricante.name.localeCompare(a.descricao)
       );
     }
     this.ascendingFabricanteOrder = !this.ascendingFabricanteOrder;
